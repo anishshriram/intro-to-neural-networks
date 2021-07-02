@@ -2,7 +2,6 @@ import tensorflow as tf
 import numpy as np
 from tensorflow import keras
 
-
 '''
 In this exercise you'll try to build a neural network that predicts the price of a house according to a simple formula.
 So, imagine if house pricing was as easy as a house costs 50k + 50k per bedroom, so that a 1 bedroom house costs 100k,
@@ -13,6 +12,8 @@ Hint: Your network might work better if you scale the house price down. You don'
 be better to create something that predicts the number 4, and then your answer is in the 'hundreds of thousands' etc.
 
 '''
+
+
 def house_model(y_new):
     xs = np.array([1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0], dtype=float)
     ys = np.array([1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0], dtype=float)
@@ -21,5 +22,7 @@ def house_model(y_new):
     model.fit(xs, ys, epochs=1000)
     return model.predict(y_new)[0]
 
+
 prediction = house_model([7.0])
+
 print(prediction)
