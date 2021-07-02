@@ -3,6 +3,20 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 '''
+After a certain number of epochs, we see that the loss starts to vary / go up and down. To mitigate this, as well as
+determine when to stop the epochs, this new class can be added. Note the changes on the model.fit()
+'''
+
+class MyCallback(tf.keras.callbacks.Callback):
+    def on_epoch_end(self, epoch, logs={}):
+        if logs.get('loss') < 0.4:
+            print("\nLoss is low so cancelling training!")
+            self.model.stop_training = True
+
+# Instantiate the above class
+callbacks = MyCallback()
+
+'''
 Coding a scenario in which the neural network can recognize different items of clothing.
 
 Uses dataset called Fashion MNIST
@@ -66,7 +80,7 @@ model.compile(optimizer=tf.optimizers.Adam(),
 
 # Train the neural network by calling model.fit()
 # Low amount of epochs because it will take a long time otherwise
-model.fit(training_images, training_labels, epochs=5)
+model.fit(training_images, training_labels, epochs=5, callbacks=[callbacks])
 
 # Actually seeing the accuracy value after the final epoch
 model.evaluate(test_images, test_labels)
