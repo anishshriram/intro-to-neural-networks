@@ -1,9 +1,6 @@
 import tensorflow as tf
 from os import path, getcwd, chdir
 
-# DO NOT CHANGE THE LINE BELOW. If you are developing in a local
-# environment, then grab mnist.npz from the Coursera Jupyter Notebook
-# and place it inside a local folder and edit the path to that location
 path = '/Users/anishshriram/Downloads/mnist.npz'
 
 class myCallback(tf.keras.callbacks.Callback):
